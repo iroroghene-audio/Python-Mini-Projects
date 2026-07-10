@@ -1,7 +1,7 @@
 '''
 A project that requires everything I have learnt in python to make a calculator.
-The first version would be the most basic way to solve it and I'd proceed to trying 
-out other better and more improved ways
+The second version of the app and it minimizes repetition, thus making the codbase cleaner
+And a loop is introduced so it doesn't just quit after one calculation is completed
 '''
 
 def addition(a, b):
@@ -17,41 +17,45 @@ def divide(a, b):
     return a / b
 
 
-
-#user_input = ''
 print('''An arithmetic operation keyword guide to navigate this calculator:' 
       add: ADDITION
       sub: SUBTRACTION
       mult: MULTIPLY
       div: DIVIDE
       ''')
-user_input = input('What arithmetic operation do you want to perform? ').lower()
-#total = 0
 
-if user_input == 'add':
-    a = int(input('Enter the first number: '))
-    b = int(input('Enter the second number: '))
+#MAIN CONTROL
+result = 0
+while True:
+        user_input = input('What arithmetic operation do you want to perform? ').lower()
         
-    total = addition(a, b)
-    print(total)
+        if user_input not in ['add','sub','mult','div','quit']:
+            print('Invalid Operation! Enter a valid keyword!')
+        elif user_input == 'quit':
+            break
+        else:
+            a = int(input('Enter the first number: '))
+            b = int(input('Enter the second number: '))
 
-if user_input == 'sub':
-    a = int(input('Enter the first number: '))
-    b = int(input('Enter the second number: '))
-        
-    total = subtract(a, b)
-    print(total)
+            if user_input == 'add':
+                result = addition(a, b)
 
-if user_input == 'mult':
-    a = int(input('Enter the first number: '))
-    b = int(input('Enter the second number: '))
-        
-    total = multiply(a, b)
-    print(total)
 
-if user_input == 'div':
-    a = int(input('Enter the first number: '))
-    b = int(input('Enter the second number: '))
-        
-    total = divide(a, b)
-    print(total)
+            elif user_input == 'sub':
+                result = subtract(a, b)
+
+
+            elif user_input == 'mult':
+                result = multiply(a, b)
+
+
+            elif user_input == 'div':
+                if b == 0:
+                    print('Zero Error')
+                    continue
+                else:
+                    result = divide(a, b)
+   
+            print(result)
+            
+            
